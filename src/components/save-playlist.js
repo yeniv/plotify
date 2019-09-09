@@ -61,9 +61,12 @@ class SavePlaylist extends Component {
   }
 
   getPlaylistURIS() {
-    return this.props.songs.map((song) => {
+    const { vetoSongs } = this.props
+    const songURIS = this.props.songs.map((song) => {
       return song.uri
     })
+
+    return songURIS.filter(songURI => !vetoSongs.includes(songURI))
   }
 
   render() {
